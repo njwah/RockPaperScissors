@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+function computerPlay() {
+    let options = ["rock", "paper", "scissors"];
+    let computerChoice = options[Math.floor(Math.random() * options.length)];
+    return computerChoice
+}
+function playRound(playerSelection, computerSelection) {
+    playerSelection = playerSelection.toLowerCase();
+    let announceWinner = ('You win! ' + playerSelection + ' beats ' + computerSelection);
+    let announceLoser = ('You lose! ' + computerSelection + ' beats ' + playerSelection);
+
+    switch (playerSelection) {
+        case computerSelection:
+            return 'It\'s a tie. You both played ' + playerSelection +'. No point!';
+            break;
+        
+        case "rock":
+            if (computerSelection === "paper") {
+                return (announceLoser);
+            } else {
+                return (announceWinner);
+            }
+            break;
+            
+        case "paper": 
+            if(computerSelection === "scissors") {
+                return (announceLoser);
+            } else {
+                return (announceWinner);
+            }
+            break;
+            
+        
+        case "scissors":
+            if (computerSelection === "rock") {
+                return (announceLoser);
+            } else {
+                return (announceWinner);
+            }
+            break;
+            
+        }
+    };
+
+    function game(){
+        let wins = 0;
+        let losses= 0;
+        for (var i = 0; i < 5; i++) {
+            let player = window.prompt("1, 2, 3, shoot!");
+            let winner = playRound(player, computerPlay());
+            console.log(winner);
+            if (winner.search('win') > -1) {
+                wins++;
+                if (wins === 3) {
+                    break;
+                }
+            } else if (winner.search('lose') > -1) {
+                losses++;
+                if (losses === 3) {
+                    break;
+                }
+            } else if (winner.search('Tie') > -1) {
+                i--;
+            }
+        }
+        if (wins > losses) {
+            console.log('You win!');
+        }
+        else {
+            console.log('You lose!');
+        }
+    }
+    game();
+
+</script>
+</body>
+</html> 
